@@ -4,14 +4,17 @@ def gerarVetor(n: int) -> list[int]:
     return [ randint(0,10) for _ in range(n) ]
 
 def procurarVetor(vetorMaior: list[int], procurado: list[int]) -> int:
+    if (len(procurado) > len(vetorMaior)):
+        return -1
+
     indiceMenor: int = -1
 
     for i in range(len(vetorMaior)):
 
         if vetorMaior[i] == procurado[0]:
             contador: int = 0
-            temp = i
-            indiceEntrado = i
+            temp: int = i
+            indiceEntrado: int = i
 
             for j in range(1, len(procurado)):
                 if temp + 1 < len(vetorMaior):
