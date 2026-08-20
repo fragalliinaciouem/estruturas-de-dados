@@ -3,6 +3,17 @@ from random import randint
 def gerarVetor(n: int) -> list[int]:
     return [ randint(0, 10) for _ in range(n) ]
 
+
+def lerVetor(nome: str, tamanho: int) -> list[int]:
+    vetor: list[int] = []
+
+    for i in range(tamanho):
+        valor: int = int(input(f'Valor {i + 1} do vetor {nome}: '))
+        vetor.append(valor)
+
+    return vetor
+
+
 def localizarVetor(vetorMaior: list[int], vetorMenor: list[int]) -> list[int]:
     indices: list[int] = []
 
@@ -10,7 +21,7 @@ def localizarVetor(vetorMaior: list[int], vetorMenor: list[int]) -> list[int]:
         print('Vetores com tamanhos incompatíveis. Vetor gerado maior que vetor procurado.')
         return []
 
-    for i in range(len(vetorMaior)):
+    for i in range(len(vetorMaior) - len(vetorMenor) + 1):
         if vetorMaior[i] == vetorMenor[0]:
             contador: int = 1
             temp: int = i + 1
@@ -121,11 +132,7 @@ if __name__ == '__main__':
             vetorMaior: list[int] = gerarVetor(padraoN)
             print(f'Vetor maior: {vetorMaior}')
 
-            vetorMenor: list[int] = []
-
-            for i in range(padraoM):
-                valor: int = int(input(f'Valor {i + 1} do vetor menor: '))
-                vetorMenor.append(valor)
+            vetorMenor: list[int] = lerVetor('menor', padraoM)
 
             print(localizarVetor(vetorMaior, vetorMenor), '\n')
 
