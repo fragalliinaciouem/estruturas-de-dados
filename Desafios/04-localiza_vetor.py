@@ -50,17 +50,18 @@ def removerVetor(vetorMaior: list[int], vetorMenor: list[int]) -> list[int]:
     i: int = 0
 
     while i <= len(vetorMaior) - m:
-        casa: bool = True
+        bateu: bool = True
+        j: int = 0
 
-        for j in range(m):
+        while j < m and bateu:
             if vetorMaior[i + j] != vetorMenor[j]:
-                casa = False
-                break
+                bateu = False
+            j += 1
 
-        if casa:
+        if bateu:
             for _ in range(m):
-                for pos in range(i, len(vetorMaior) - 1):
-                    vetorMaior[pos], vetorMaior[pos + 1] = vetorMaior[pos + 1], vetorMaior[pos]
+                for j in range(i, len(vetorMaior) - 1):
+                    vetorMaior[j], vetorMaior[j + 1] = vetorMaior[j + 1], vetorMaior[j]
 
             for _ in range(m):
                 vetorMaior.pop()
@@ -85,14 +86,15 @@ def substituirVetor(vetorMaior: list[int], vetorMenor: list[int], vetorSubstitut
 
     while i < len(vetorMaior):
         if i <= len(vetorMaior) - m:
-            casa: bool = True
+            bateu: bool = True
+            j: int = 0
 
-            for j in range(m):
+            while j < m and bateu:
                 if vetorMaior[i + j] != vetorMenor[j]:
-                    casa = False
-                    break
+                    bateu = False
+                j += 1
 
-            if casa:
+            if bateu:
                 for valor in vetorSubstituto:
                     resultado.append(valor)
                 i += m
