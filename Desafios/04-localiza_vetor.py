@@ -43,6 +43,7 @@ def localizarVetor(vetorMaior: list[int], vetorMenor: list[int]) -> list[int]:
 
 def removerVetor(vetorMaior: list[int], vetorMenor: list[int]) -> list[int]:
     m: int = len(vetorMenor)
+    l: int = len(vetorMaior)
 
     if m == 0:
         return vetorMaior
@@ -68,8 +69,10 @@ def removerVetor(vetorMaior: list[int], vetorMenor: list[int]) -> list[int]:
         else:
             i += 1
 
-    return vetorMaior
+    if len(vetorMaior) == l:
+        print("\nO vetor permaneceu o mesmo\n")
 
+    return vetorMaior
 
 def substituirVetor(vetorMaior: list[int], vetorMenor: list[int], vetorSubstituto: list[int]) -> list[int]:
     m: int = len(vetorMenor)
@@ -109,8 +112,10 @@ def substituirVetor(vetorMaior: list[int], vetorMenor: list[int], vetorSubstitut
 if __name__ == '__main__':
     valido: bool = True
 
-    padraoN: int = 25
-    padraoM: int = 2
+    padraoN: int = 20
+    padraoM: int = 3
+
+    vetorMaior: list[int] = gerarVetor(padraoN)
 
     while valido:
         print(f'(1) configuração de n e m (padrões: {padraoN}, {padraoM})\n' + \
@@ -119,19 +124,22 @@ if __name__ == '__main__':
                 '(4) substituir todas as ocorrências do vetor menor\n' + \
                 '(5) finalizar programa\n')
 
-        opcao: int = int(input('Digite uma opção: '))
+        print(f'Vetor maior: {vetorMaior}')
+
+        opcao: int = int(input('\nDigite uma opção: '))
         print()
 
         if opcao == 1:
-            novoN: int = int(input(f'Digite o valor de n (padrão = {padraoN}): '))
-            novoM: int = int(input(f'Digite o valor de m (padrão = {padraoM}): '))
+            novoN: int = int(input(f'Digite o tamanho do vetor maior (padrão = {padraoN}): '))
+            novoM: int = int(input(f'Digite o tamanho do vetor menor (padrão = {padraoM}): '))
             print()
 
             padraoN = novoN
             padraoM = novoM
 
-        elif opcao == 2:
             vetorMaior: list[int] = gerarVetor(padraoN)
+
+        elif opcao == 2:
             print(f'Vetor maior: {vetorMaior}')
 
             vetorMenor: list[int] = lerVetor('menor', padraoM)
@@ -139,7 +147,6 @@ if __name__ == '__main__':
             print(localizarVetor(vetorMaior, vetorMenor), '\n')
 
         elif opcao == 3:
-            vetorMaior: list[int] = gerarVetor(padraoN)
             print(f'Vetor maior: {vetorMaior}')
 
             vetorMenor: list[int] = lerVetor('menor', padraoM)
@@ -147,7 +154,6 @@ if __name__ == '__main__':
             print(removerVetor(vetorMaior, vetorMenor), '\n')
 
         elif opcao == 4:
-            vetorMaior: list[int] = gerarVetor(padraoN)
             print(f'Vetor maior: {vetorMaior}')
 
             vetorMenor: list[int] = lerVetor('menor', padraoM)
