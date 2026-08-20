@@ -129,6 +129,25 @@ if __name__ == '__main__':
 
             print(localizarVetor(vetorMaior, vetorMenor), '\n')
 
+        elif opcao == 3:
+            vetorMaior: list[int] = gerarVetor(padraoN)
+            print(f'Vetor maior: {vetorMaior}')
+
+            vetorMenor: list[int] = lerVetor('menor', padraoM)
+
+            print(removerVetor(vetorMaior, vetorMenor), '\n')
+
+        elif opcao == 4:
+            vetorMaior: list[int] = gerarVetor(padraoN)
+            print(f'Vetor maior: {vetorMaior}')
+
+            vetorMenor: list[int] = lerVetor('menor', padraoM)
+
+            tamanhoSubstituto: int = int(input('Quantos elementos tem o vetor substituto? '))
+            vetorSubstituto: list[int] = lerVetor('substituto', tamanhoSubstituto)
+
+            print(substituirVetor(vetorMaior, vetorMenor, vetorSubstituto), '\n')
+
         elif opcao == 5:
             valido = False
             print('Programa finalizado')
