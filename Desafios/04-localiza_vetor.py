@@ -30,6 +30,69 @@ def localizarVetor(vetorMaior: list[int], vetorMenor: list[int]) -> list[int]:
 
     return indices
 
+def removerVetor(vetorMaior: list[int], vetorMenor: list[int]) -> list[int]:
+    m: int = len(vetorMenor)
+
+    if m == 0:
+        return vetorMaior
+
+    i: int = 0
+
+    while i <= len(vetorMaior) - m:
+        casa: bool = True
+
+        for j in range(m):
+            if vetorMaior[i + j] != vetorMenor[j]:
+                casa = False
+                break
+
+        if casa:
+            for _ in range(m):
+                for pos in range(i, len(vetorMaior) - 1):
+                    vetorMaior[pos], vetorMaior[pos + 1] = vetorMaior[pos + 1], vetorMaior[pos]
+
+            for _ in range(m):
+                vetorMaior.pop()
+        else:
+            i += 1
+
+    return vetorMaior
+
+
+def substituirVetor(vetorMaior: list[int], vetorMenor: list[int], vetorSubstituto: list[int]) -> list[int]:
+    m: int = len(vetorMenor)
+
+    if m == 0:
+        return vetorMaior
+
+    if len(vetorMaior) < m:
+        print('Vetores com tamanhos incompatíveis. Vetor gerado maior que vetor procurado.')
+        return vetorMaior
+
+    resultado: list[int] = []
+    i: int = 0
+
+    while i < len(vetorMaior):
+        if i <= len(vetorMaior) - m:
+            casa: bool = True
+
+            for j in range(m):
+                if vetorMaior[i + j] != vetorMenor[j]:
+                    casa = False
+                    break
+
+            if casa:
+                for valor in vetorSubstituto:
+                    resultado.append(valor)
+                i += m
+                continue
+
+        resultado.append(vetorMaior[i])
+        i += 1
+
+    return resultado
+
+
 if __name__ == '__main__':
     valido: bool = True
 
